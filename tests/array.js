@@ -33,4 +33,14 @@ describe('Array', () => {
             expect(csv).to.equal('name,lastname,family.name,family.type\nBob,Smith,Peter,Father\nJames,David,Julie,Mother');
         });
     });
+    it('escapes', () => {
+        jsonexport([{
+            string_1: 'has several, characters, "it needs" to escape;'
+        },
+        {
+            string_2: 'even more, characters, "it needs" to escape;'
+        }], {}, (err, csv) => {
+            expect(csv).to.equal('string_1,string_2\n"has several, characters, ""it needs"" to escape;",\n,"even more, characters, ""it needs"" to escape;"');
+        })
+    });
 });

@@ -26,4 +26,11 @@ describe('Object', () => {
             expect(csv).to.equal('cars,12\nroads,5\ntraffic,slow\nspeed.max,123\nspeed.avg,20\nspeed.min,5\nsize,10;20');
         });
     });
+    it('escapes', () => {
+        jsonexport({
+            this_string: 'has several, characters, "it needs" to escape;'
+        }, {}, (err, csv) => {
+            expect(csv).to.equal('this_string,"has several, characters, ""it needs"" to escape;"');
+        });
+    });
 });
